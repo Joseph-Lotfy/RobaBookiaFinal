@@ -411,7 +411,7 @@ nav {
   
 #fot {
   transition: 1s;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
 .footer .img {
