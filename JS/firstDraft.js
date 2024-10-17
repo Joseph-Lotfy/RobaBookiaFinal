@@ -77,6 +77,14 @@ function displayBookCovers(books, details) {
                     <h2 class="bookTitle">${title}</h2>
                     <p>${author}</p>
                     <div class="icons">
+                    <div class="rating">
+                            <input type="number" name="rating" hidden >
+                            <i class='bx bx-star star' style="--i: 0;"></i>
+                            <i class='bx bx-star star' style="--i: 1;"></i>
+                            <i class='bx bx-star star' style="--i: 2;"></i>
+                            <i class='bx bx-star star' style="--i: 3;"></i>
+                            <i class='bx bx-star star' style="--i: 4;"></i>
+                        </div>
                         <p class="p3 price">$${randomNumber}</p>
                     </div>
                     <div class="buttons">
@@ -105,7 +113,38 @@ function displayBookCovers(books, details) {
           </div>
         `;
     });
-    hideLoader(); // Hide the loader after displaying results
+    // hideLoader(); // Hide the loader after displaying results
+    const allCards = document.querySelectorAll('.card');
+
+allCards.forEach(card => {
+  // For each card, find its stars and rating input
+  const allStar = card.querySelectorAll('.rating .star');
+  const ratingValue = card.querySelector('.rating input');
+
+  allStar.forEach((item, idx) => {
+    item.addEventListener('click', function () {
+      let click = 0;
+      ratingValue.value = idx + 1;
+
+      // Reset all stars in this card only
+      allStar.forEach(i => {
+        i.classList.replace('bxs-star', 'bx-star');
+        i.classList.remove('active');
+      });
+
+      // Set active stars in this card only
+      for (let i = 0; i < allStar.length; i++) {
+        if (i <= idx) {
+          allStar[i].classList.replace('bx-star', 'bxs-star');
+          allStar[i].classList.add('active');
+        } else {
+          allStar[i].style.setProperty('--i', click);
+          click++;
+        }
+      }
+    });
+  });
+});
 }
 
 
@@ -512,4 +551,37 @@ document.addEventListener("DOMContentLoaded", function () {
         emailInput.classList.remove('error'); 
         alert("Subscription successful!");
     }
+});
+
+
+const allCards = document.querySelectorAll('.card');
+
+allCards.forEach(card => {
+  // For each card, find its stars and rating input
+  const allStar = card.querySelectorAll('.rating .star');
+  const ratingValue = card.querySelector('.rating input');
+
+  allStar.forEach((item, idx) => {
+    item.addEventListener('click', function () {
+      let click = 0;
+      ratingValue.value = idx + 1;
+
+      // Reset all stars in this card only
+      allStar.forEach(i => {
+        i.classList.replace('bxs-star', 'bx-star');
+        i.classList.remove('active');
+      });
+
+      // Set active stars in this card only
+      for (let i = 0; i < allStar.length; i++) {
+        if (i <= idx) {
+          allStar[i].classList.replace('bx-star', 'bxs-star');
+          allStar[i].classList.add('active');
+        } else {
+          allStar[i].style.setProperty('--i', click);
+          click++;
+        }
+      }
+    });
+  });
 });

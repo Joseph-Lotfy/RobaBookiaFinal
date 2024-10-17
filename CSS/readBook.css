@@ -507,7 +507,7 @@ button {
   align-items: center;
 }
 .cart .purchases{
-  width: 220px;
+  width: 280px;
   height: fit-content;
   background: linear-gradient(to bottom left ,white, rgb(250, 250, 245));
   position: absolute;
